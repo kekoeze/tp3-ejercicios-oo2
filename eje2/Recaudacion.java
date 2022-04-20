@@ -38,7 +38,7 @@ public class Recaudacion {
 
     reader.close();
     csvData.remove(0);
-    Predicate<String[]> lambda = (String[] s) -> s[1].equals(options.get("company_name"));
+    InterfaceWhere<String[]> lambda = (String[] s) -> s[1].equals(options.get("company_name"));
     csvData = Filtro.filtrar(lambda, csvData);
     csvData = encontrarNombre(options, "company_name", 1, csvData);
     csvData = encontrarNombre(options, "city", 4, csvData);
