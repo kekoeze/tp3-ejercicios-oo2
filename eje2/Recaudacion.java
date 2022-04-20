@@ -38,13 +38,22 @@ public class Recaudacion {
 
     reader.close();
     csvData.remove(0);
+    if (options.containsKey("company_name")) {
     InterfaceWhere<String[]> lambda = (String[] s) -> s[1].equals(options.get("company_name"));
     csvData = Filtro.filtrar(lambda, csvData);
-    csvData = encontrarNombre(options, "company_name", 1, csvData);
-    csvData = encontrarNombre(options, "city", 4, csvData);
-    csvData = encontrarNombre(options, "state", 5, csvData);
-    csvData = encontrarNombre(options, "round", 9, csvData);
-
+    }
+     if (options.containsKey("city")) {
+    InterfaceWhere<String[]> lambda = (String[] s) -> s[4].equals(options.get("company_name"));
+    csvData = Filtro.filtrar(lambda, csvData);
+     }
+     if (options.containsKey("state")) {
+    InterfaceWhere<String[]> lambda = (String[] s) -> s[5].equals(options.get("company_name"));
+    csvData = Filtro.filtrar(lambda, csvData);
+     }
+    if (options.containsKey("round")) {
+    InterfaceWhere<String[]> lambda = (String[] s) -> s[9].equals(options.get("company_name"));
+    csvData = Filtro.filtrar(lambda, csvData);
+    }
     List<Map<String, String>> output = new ArrayList<Map<String, String>>();
 
     for (int i = 0; i < csvData.size(); i++) {
